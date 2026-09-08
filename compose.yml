@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build: ./frontend
+    image: ajayf:v1
+    container_name: datalensfr
+    depends_on: 
+     - backend
+    ports:
+     - "80:80"
+    networks:
+      - Anet
+    restart: unless-stopped
+   
+  backend:
+    build: ./backend
+    image: ajayb:v1
+    container_name: datalensbk
+    ports:
+     - "5000:5000"
+    networks:
+     - Anet
+    restart: unless-stopped
+networks:
+  Anet:
+    driver: bridge
+
+
